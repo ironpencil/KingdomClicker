@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get '/signup', to: 'users#new'
+
   resources :samples
   #resources :users
   resources :kingdoms
