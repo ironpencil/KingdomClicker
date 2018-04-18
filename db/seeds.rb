@@ -17,18 +17,16 @@ kingdom_list.each do | name, description, gold |
     Kingdom.create( name: name, description: description, gold: gold );
 end
 
-=begin
 User.destroy_all
 
 user_list = [
-    [ "Jiiiiiiiim", "jiiiiiiiim@jim.com" ],
-    [ "sighnoceros", "sighnoceros@jim.com" ]
+    [ "Jiiiiiiiim", "jim@jim.com", "foobar", "foobar" ],
+    [ "sighnoceros", "sighn@ceros.com", "foobar", "foobar" ]
 ]
 
-user_list.each do | name, email |
-    User.create( name: name, email: email );
+user_list.each do | name, email, password, password_confirmation |
+    User.create( name: name, email: email, password: password, password_confirmation: password_confirmation );
 end
-=end
 
 Sample.destroy_all
 
