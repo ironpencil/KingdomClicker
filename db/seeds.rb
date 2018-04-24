@@ -20,8 +20,8 @@ end
 User.destroy_all
 
 user_list = [
-    [ "Jiiiiiiiim", "jim@jim.com", "foobar", "foobar" ],
-    [ "Jiiiiiiiim", "jim@ironpencil.com", "foobar", "foobar" ],
+    [ "Jiiiiiiiim", "jim@jim.com", "foobar", "foobar", true],
+    [ "Jiiiiiiiim", "jim@ironpencil.com", "foobar", "foobar", true],
     [ "sighnoceros", "sighn@ceros.com", "foobar", "foobar" ]
 ]
 
@@ -34,9 +34,10 @@ user_list << ["Example User", "example@railstutorial.org", "foobar", "foobar"]
     user_list << [ name, email, password, password ]
 end
 
-user_list.each do | name, email, password, password_confirmation |
+user_list.each do | name, email, password, password_confirmation, admin |
+    is_admin = admin || false
     #puts "Creating user: #{{ name: name, email: email }}"
-    User.create!( name: name, email: email, password: password, password_confirmation: password_confirmation );
+    User.create!( name: name, email: email, password: password, password_confirmation: password_confirmation, admin: is_admin );
 end
 
 Sample.destroy_all
