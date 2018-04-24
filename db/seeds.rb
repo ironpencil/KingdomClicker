@@ -21,11 +21,22 @@ User.destroy_all
 
 user_list = [
     [ "Jiiiiiiiim", "jim@jim.com", "foobar", "foobar" ],
+    [ "Jiiiiiiiim", "jim@ironpencil.com", "foobar", "foobar" ],
     [ "sighnoceros", "sighn@ceros.com", "foobar", "foobar" ]
 ]
 
+user_list << ["Example User", "example@railstutorial.org", "foobar", "foobar"]
+
+99.times do |n|
+    name  = Faker::Name.name
+    email = "example-#{n+1}@railstutorial.org"
+    password = "password"
+    user_list << [ name, email, password, password ]
+end
+
 user_list.each do | name, email, password, password_confirmation |
-    User.create( name: name, email: email, password: password, password_confirmation: password_confirmation );
+    #puts "Creating user: #{{ name: name, email: email }}"
+    User.create!( name: name, email: email, password: password, password_confirmation: password_confirmation );
 end
 
 Sample.destroy_all
