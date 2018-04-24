@@ -10,6 +10,8 @@ end
 gem 'rails', '~> 5.1.6'
 gem 'jquery-rails'
 gem 'faker'
+gem 'will_paginate', '3.1.6'
+gem 'bootstrap-will_paginate', '1.0.0'
 gem 'bootstrap-sass'
 # Use ActiveModel has_secure_password
 gem 'bcrypt', git: 'https://github.com/codahale/bcrypt-ruby.git', require: 'bcrypt' if Gem.win_platform?
