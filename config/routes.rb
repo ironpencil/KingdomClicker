@@ -1,11 +1,5 @@
 Rails.application.routes.draw do
 
-  # resources
-  resources :samples
-  resources :users
-  resources :kingdoms
-  resources :account_activations, only: [:edit]
-
   # static pages
   get 'site/index'
   get 'about', to: 'site#about'
@@ -22,4 +16,11 @@ Rails.application.routes.draw do
 
   root 'site#index'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
+  # resources
+  resources :samples
+  resources :users
+  resources :kingdoms
+  resources :account_activations,   only: [:edit]
+  resources :password_resets,       only: [:new, :create, :edit, :update]
 end
