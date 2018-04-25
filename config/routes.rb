@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :samples
   resources :users
   resources :kingdoms
+  resources :account_activations, only: [:edit]
 
   # static pages
   get 'site/index'

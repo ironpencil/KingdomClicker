@@ -20,24 +20,34 @@ end
 User.destroy_all
 
 user_list = [
-    [ "Jiiiiiiiim", "jim@jim.com", "foobar", "foobar", true],
-    [ "Jiiiiiiiim", "jim@ironpencil.com", "foobar", "foobar", true],
-    [ "sighnoceros", "sighn@ceros.com", "foobar", "foobar" ]
+    [ "Jiiiiiiiim", "jim@jim.com", "foobar", "foobar", true, true, Time.zone.now],
+    [ "Jiiiiiiiim", "jim@ironpencil.com", "foobar", "foobar", true, true, Time.zone.now],
+    [ "sighnoceros", "sighn@ceros.com", "foobar", "foobar", false, true, Time.zone.now]
 ]
 
-user_list << ["Example User", "example@railstutorial.org", "foobar", "foobar"]
+user_list.each do | name, email, password, password_confirmation, admin, activated, activated_at |
+    #puts "Creating user: #{{ name: name, email: email }}"
+    User.create!( name: name, email: email, password: password, password_confirmation: password_confirmation, admin: admin, activated: activated, activated_at: activated_at );
+end
+
+User.create!(name:  "Example User",
+    email: "example@railstutorial.org",
+    password:              "foobar",
+    password_confirmation: "foobar",
+    admin:     true,
+    activated: true,
+    activated_at: Time.zone.now)
 
 99.times do |n|
     name  = Faker::Name.name
     email = "example-#{n+1}@railstutorial.org"
     password = "password"
-    user_list << [ name, email, password, password ]
-end
-
-user_list.each do | name, email, password, password_confirmation, admin |
-    is_admin = admin || false
-    #puts "Creating user: #{{ name: name, email: email }}"
-    User.create!( name: name, email: email, password: password, password_confirmation: password_confirmation, admin: is_admin );
+    User.create!(name:  name,
+        email: email,
+        password:              password,
+        password_confirmation: password,
+        activated: true,
+        activated_at: Time.zone.now)
 end
 
 Sample.destroy_all
