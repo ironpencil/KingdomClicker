@@ -6,17 +6,6 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-Kingdom.destroy_all
-
-kingdom_list = [
-    [ "Kingdom1", "My first kingdom", 420 ],
-    [ "Kingdom2", "My second kingdom", 1337 ]
-]
-
-kingdom_list.each do | name, description, gold |
-    Kingdom.create( name: name, description: description, gold: gold );
-end
-
 User.destroy_all
 
 user_list = [
@@ -48,6 +37,17 @@ User.create!(name:  "Example User",
         password_confirmation: password,
         activated: true,
         activated_at: Time.zone.now)
+end
+
+Kingdom.destroy_all
+
+kingdom_list = [
+    [ "Kingdom1", "My first kingdom", 420, User.first ],
+    [ "Kingdom2", "My second kingdom", 1337, User.second ]
+]
+
+kingdom_list.each do | name, description, gold, user |
+    Kingdom.create( name: name, description: description, gold: gold, user: user);
 end
 
 Sample.destroy_all
