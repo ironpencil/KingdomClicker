@@ -1,0 +1,10 @@
+<% provide(:title, 'All kingdoms') %>
+<h1>All kingdoms</h1>
+
+<%= will_paginate %>
+
+<ul class="kingdoms">
+  <%= render partial: "summary", collection: @kingdoms %>
+</ul>
+
+<%= will_paginate %>

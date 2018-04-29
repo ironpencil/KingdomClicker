@@ -17,7 +17,10 @@ user_list = [
 
 user_list.each do | name, email, password, password_confirmation, admin, activated, activated_at |
     #puts "Creating user: #{{ name: name, email: email }}"
-    User.create!( name: name, email: email, password: password, password_confirmation: password_confirmation, admin: admin, activated: activated, activated_at: activated_at );
+    user = User.create!( name: name, email: email, password: password, password_confirmation: password_confirmation, admin: admin, activated: activated, activated_at: activated_at );
+    user.create_kingdom!(name: Faker::Hobbit.location[0, 16],
+                            description: Faker::Hobbit.quote,
+                            gold: rand(100))
 end
 
 User.create!(name:  "Example User",
@@ -41,14 +44,14 @@ User.create!(name:  "Example User",
 end
 
 
-kingdom_list = [
-    [ "Kingdom1", "My first kingdom", 420, User.first.id ],
-    [ "Kingdom2", "My second kingdom", 1337, User.second.id ]
-]
+# kingdom_list = [
+#     [ "Kingdom1", "My first kingdom", 420, User.first.id ],
+#     [ "Kingdom2", "My second kingdom", 1337, User.second.id ]
+# ]
 
-kingdom_list.each do | name, description, gold, user |
-    Kingdom.create( name: name, description: description, gold: gold, user_id: user);
-end
+# kingdom_list.each do | name, description, gold, user |
+#     Kingdom.create( name: name, description: description, gold: gold, user_id: user);
+# end
 
 Sample.destroy_all
 
