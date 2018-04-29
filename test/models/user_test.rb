@@ -76,4 +76,12 @@ class UserTest < ActiveSupport::TestCase
   test "authenticated? should return false for a user with nil digest" do
     assert_not @user.authenticated?(:remember, '')
   end
+
+  test "associated kingdom should be destroyed" do
+    @user.save
+    @user.create_kingdom!(name: "Lorem Ipsum", description: "Dolor sit amet", gold: 0)
+    assert_difference 'Kingdom.count', -1 do
+      @user.destroy
+    end
+  end
 end
