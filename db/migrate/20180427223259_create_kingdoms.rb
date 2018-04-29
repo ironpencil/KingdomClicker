@@ -4,7 +4,7 @@ class CreateKingdoms < ActiveRecord::Migration[5.1]
       t.string :name
       t.text :description
       t.numeric :gold
-      t.references :user, foreign_key: true
+      t.references :user, foreign_key: true, index: { unique: true }
 
       t.timestamps
     end

@@ -24,4 +24,11 @@ class KingdomTest < ActiveSupport::TestCase
     @kingdom.name = "a" * 17
     assert_not @kingdom.valid?
   end
+
+  test "user id must be unique" do
+    dup_kingdom = @kingdom.dup
+    dup_kingdom.user_id = @kingdom.user_id
+    @kingdom.save
+    assert_not dup_kingdom.valid?
+  end
 end
